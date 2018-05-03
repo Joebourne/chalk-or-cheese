@@ -13,17 +13,33 @@ const images = [
 ];
 
 class App extends Component {
+  state = {
+    answers: []
+  };
+
   onClickChalk = index => {
     images[index].type === 'chalk'
-      ? console.log('correct')
-      : console.log('wrong');
+      ? this.updateAnswers('correct')
+      : this.updateAnswers('wrong');
   };
 
   onClickCheese = index => {
     images[index].type === 'cheese'
-      ? console.log('correct')
-      : console.log('wrong');
+      ? this.updateAnswers('correct')
+      : this.updateAnswers('wrong');
   };
+
+  updateAnswers = result => {
+    this.setState(prevState => {
+      let answers = prevState.answers;
+      answers.push(result);
+      return {
+        answers
+      };
+    });
+  };
+
+  logAnswers = () => console.log(this.state.answers);
 
   render() {
     return (
@@ -33,11 +49,14 @@ class App extends Component {
         </header>
         {images.map((image, index) => (
           <Question
+            key={image.url}
             url={image.url}
             onClickChalk={() => this.onClickChalk(index)}
             onClickCheese={() => this.onClickCheese(index)}
           />
         ))}
+        <hr />
+        <button onClick={this.logAnswers}>log answers</button>
       </div>
     );
   }
