@@ -29,13 +29,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Chalk or Cheese?</h1>
+          <h1>Chalk or Cheese?</h1>
         </header>
-        <Question
-          url={images[0].url}
-          onClickChalk={() => this.onClickChalk(0)}
-          onClickCheese={() => this.onClickCheese(0)}
-        />
+        {images.map((image, index) => (
+          <Question
+            url={image.url}
+            onClickChalk={() => this.onClickChalk(index)}
+            onClickCheese={() => this.onClickCheese(index)}
+          />
+        ))}
       </div>
     );
   }
