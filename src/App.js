@@ -14,27 +14,29 @@ const images = [
 
 class App extends Component {
   state = {
-    answers: []
+    answers: {}
   };
 
   onClickChalk = index => {
     images[index].type === 'chalk'
-      ? this.updateAnswers('correct')
-      : this.updateAnswers('wrong');
+      ? this.updateAnswers(index, 'correct')
+      : this.updateAnswers(index, 'wrong');
   };
 
   onClickCheese = index => {
     images[index].type === 'cheese'
-      ? this.updateAnswers('correct')
-      : this.updateAnswers('wrong');
+      ? this.updateAnswers(index, 'correct')
+      : this.updateAnswers(index, 'wrong');
   };
 
-  updateAnswers = result => {
+  updateAnswers = (index, result) => {
     this.setState(prevState => {
-      let answers = prevState.answers;
-      answers.push(result);
+      const prevAnswers = this.state.answers;
       return {
-        answers
+        answers: {
+          ...prevAnswers,
+          [index]: result
+        }
       };
     });
   };
