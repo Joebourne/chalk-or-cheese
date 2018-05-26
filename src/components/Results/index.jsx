@@ -24,7 +24,7 @@ export default function Results({ score }) {
         <Fragment>
           <h2 className="heading">Unlucky!</h2>
           <div className="score-text">
-            <p>You only got</p>
+            <p>You {flippedScore > 0 && 'only '}got</p>
             <h3>{flippedScore} / 10</h3>
             <p>answers correct!</p>
           </div>
