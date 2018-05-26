@@ -28,6 +28,14 @@ h1 {
   align-content: flex-end;
 }
 
+.results {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .footer {
   display: flex;
   align-items: center;
@@ -54,6 +62,7 @@ h1 {
   box-shadow: none;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.75);
   transition: box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .button:hover {

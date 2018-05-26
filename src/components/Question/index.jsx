@@ -8,23 +8,13 @@ Question.propTypes = {
   className: PropTypes.string
 };
 
-Question.defaultProps = {
-  className: null
-};
-
-export default function Question({
-  src,
-  onClickChalk,
-  onClickCheese,
-  className
-}) {
+export default function Question({ src, onClickChalk, onClickCheese }) {
   return (
     <div
-      className={className}
+      className="question"
       style={{
         backgroundColor: 'red',
-        background: `url(${src}) no-repeat center center`,
-        backgroundSize: 'cover'
+        background: `url(${src}) center center / cover no-repeat fixed`
       }}
     >
       <div className="buttons">

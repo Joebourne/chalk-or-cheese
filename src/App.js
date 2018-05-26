@@ -2,55 +2,62 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Question from './components/Question';
+import Results from './components/Results';
 import imageMap from './components/ImageRandomiser';
 
 class App extends Component {
   state = {
+    questionIndex: 0,
     answers: {}
   };
 
-  onClickChalk = index => {
-    imageMap[index].type === 'chalk'
-      ? this.updateAnswers(index, 'correct')
-      : this.updateAnswers(index, 'wrong');
-  };
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
+  }
 
-  onClickCheese = index => {
-    imageMap[index].type === 'cheese'
-      ? this.updateAnswers(index, 'correct')
-      : this.updateAnswers(index, 'wrong');
+  onClickAnswer = (index, answer) => {
+    imageMap[index].type === answer
+      ? this.updateAnswers(index, true)
+      : this.updateAnswers(index, false);
   };
 
   updateAnswers = (index, result) => {
     this.setState(prevState => {
-      const prevAnswers = this.state.answers;
+      const prevAnswers = prevState.answers;
       return {
         answers: {
           ...prevAnswers,
           [index]: result
-        }
+        },
+        questionIndex: prevState.questionIndex + 1
       };
     });
   };
 
-  logAnswers = () => console.log(this.state.answers);
+  calculateScore = answersObject => {
+    let score = 0;
+    Object.keys(answersObject).map(answer => {
+      if (answersObject[answer] === true) score += 1;
+    });
+    return score;
+  };
 
   render() {
+    const { questionIndex, answers } = this.state;
     return (
       <div className="wrapper">
         <header className="header">
           <h1>Chalk or Cheese?</h1>
         </header>
-        <Question
-          key={imageMap[0].src}
-          src={imageMap[0].src}
-          onClickChalk={() => this.onClickChalk(0)}
-          onClickCheese={() => this.onClickCheese(0)}
-          className="question"
-        />
-        {/* <div className="footer">
-          <button onClick={this.logAnswers}>log answers</button>
-        </div> */}
+        {questionIndex < 10 ? (
+          <Question
+            src={imageMap[questionIndex].src}
+            onClickChalk={() => this.onClickAnswer(questionIndex, 'chalk')}
+            onClickCheese={() => this.onClickAnswer(questionIndex, 'cheese')}
+          />
+        ) : (
+          <Results score={this.calculateScore(answers)} />
+        )}
       </div>
     );
   }
