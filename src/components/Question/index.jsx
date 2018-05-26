@@ -21,7 +21,7 @@ export default function Question({ src, onClickChalk, onClickCheese }) {
         <button className="button" onClick={onClickChalk}>
           CHALK
         </button>
-        <button className="button" onClick={onClickCheese}>
+        <button className="button cheese-button" onClick={onClickCheese}>
           CHEESE
         </button>
       </div>

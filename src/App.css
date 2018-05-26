@@ -47,7 +47,7 @@ p {
 
 .buttons {
   align-self: flex-end;
-  padding: 30px;
+  padding: 100px 0;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -73,4 +73,8 @@ p {
 
 .button:hover {
   box-shadow: 4px 4px 40px 4px rgba(0, 0, 0, 0.75);
+}
+
+.cheese-button {
+  background-color: #edb91f;
 }
