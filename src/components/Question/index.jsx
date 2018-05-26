@@ -4,26 +4,36 @@ import PropTypes from 'prop-types';
 Question.propTypes = {
   src: PropTypes.string.isRequired,
   onClickChalk: PropTypes.func.isRequired,
-  onClickCheese: PropTypes.func.isRequired
+  onClickCheese: PropTypes.func.isRequired,
+  className: PropTypes.string
 };
 
-export default function Question({ src, onClickChalk, onClickCheese }) {
+Question.defaultProps = {
+  className: null
+};
+
+export default function Question({
+  src,
+  onClickChalk,
+  onClickCheese,
+  className
+}) {
   return (
-    <div>
-      <div>
-        <div
-          style={{
-            height: '200px',
-            backgroundColor: 'red',
-            background: `url(${src}) no-repeat center center`,
-            backgroundSize: 'cover'
-          }}
-        />
-      </div>
-      <hr />
-      <div>
-        <button onClick={onClickChalk}>chalk</button>
-        <button onClick={onClickCheese}>cheese</button>
+    <div
+      className={className}
+      style={{
+        backgroundColor: 'red',
+        background: `url(${src}) no-repeat center center`,
+        backgroundSize: 'cover'
+      }}
+    >
+      <div className="buttons">
+        <button className="button" onClick={onClickChalk}>
+          CHALK
+        </button>
+        <button className="button" onClick={onClickCheese}>
+          CHEESE
+        </button>
       </div>
     </div>
   );

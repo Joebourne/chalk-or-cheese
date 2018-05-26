@@ -37,20 +37,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="wrapper">
+        <header className="header">
           <h1>Chalk or Cheese?</h1>
         </header>
-        {imageMap.map((image, index) => (
-          <Question
-            key={image.src}
-            src={image.src}
-            onClickChalk={() => this.onClickChalk(index)}
-            onClickCheese={() => this.onClickCheese(index)}
-          />
-        ))}
-        <hr />
-        <button onClick={this.logAnswers}>log answers</button>
+        <Question
+          key={imageMap[0].src}
+          src={imageMap[0].src}
+          onClickChalk={() => this.onClickChalk(0)}
+          onClickCheese={() => this.onClickCheese(0)}
+          className="question"
+        />
+        {/* <div className="footer">
+          <button onClick={this.logAnswers}>log answers</button>
+        </div> */}
       </div>
     );
   }
