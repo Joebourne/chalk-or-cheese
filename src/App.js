@@ -47,7 +47,10 @@ class App extends Component {
     return (
       <div className="wrapper">
         <header className="header">
-          <h1>Chalk or Cheese?</h1>
+          <h1>
+            <span style={{ color: 'white' }}>Chalk</span> or{' '}
+            <span style={{ color: '#EDB91F' }}>Cheese</span>?
+          </h1>
         </header>
         {questionIndex < 10 ? (
           <Question
