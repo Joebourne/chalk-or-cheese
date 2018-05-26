@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Question from './components/Question';
-
-// temp dummy data
-const images = [
-  { type: 'chalk', url: '/1' },
-  { type: 'cheese', url: '/2' },
-  { type: 'cheese', url: '/3' },
-  { type: 'chalk', url: '/4' },
-  { type: 'cheese', url: '/5' }
-];
+import imageMap from './components/ImageRandomiser';
 
 class App extends Component {
   state = {
@@ -18,13 +10,13 @@ class App extends Component {
   };
 
   onClickChalk = index => {
-    images[index].type === 'chalk'
+    imageMap[index].type === 'chalk'
       ? this.updateAnswers(index, 'correct')
       : this.updateAnswers(index, 'wrong');
   };
 
   onClickCheese = index => {
-    images[index].type === 'cheese'
+    imageMap[index].type === 'cheese'
       ? this.updateAnswers(index, 'correct')
       : this.updateAnswers(index, 'wrong');
   };
@@ -49,10 +41,10 @@ class App extends Component {
         <header className="App-header">
           <h1>Chalk or Cheese?</h1>
         </header>
-        {images.map((image, index) => (
+        {imageMap.map((image, index) => (
           <Question
-            key={image.url}
-            url={image.url}
+            key={image.src}
+            src={image.src}
             onClickChalk={() => this.onClickChalk(index)}
             onClickCheese={() => this.onClickCheese(index)}
           />

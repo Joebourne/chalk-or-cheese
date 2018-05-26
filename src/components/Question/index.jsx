@@ -2,16 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 Question.propTypes = {
-  url: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   onClickChalk: PropTypes.func.isRequired,
   onClickCheese: PropTypes.func.isRequired
 };
 
-export default function Question({ url, onClickChalk, onClickCheese }) {
+export default function Question({ src, onClickChalk, onClickCheese }) {
   return (
     <div>
       <div>
-        <img src={url} />
+        <div
+          style={{
+            height: '200px',
+            backgroundColor: 'red',
+            background: `url(${src}) no-repeat center center`,
+            backgroundSize: 'cover'
+          }}
+        />
       </div>
       <hr />
       <div>
